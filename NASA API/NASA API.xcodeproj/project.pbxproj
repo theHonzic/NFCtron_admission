@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30645B229E159A3005D9619 /* AppBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30645B129E159A3005D9619 /* AppBackground.swift */; };
 		C3D8111C29E1507A007686CC /* NASA_APIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8111B29E1507A007686CC /* NASA_APIApp.swift */; };
 		C3D8111E29E1507A007686CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8111D29E1507A007686CC /* ContentView.swift */; };
 		C3D8112029E1507B007686CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3D8111F29E1507B007686CC /* Assets.xcassets */; };
 		C3D8112329E1507B007686CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3D8112229E1507B007686CC /* Preview Assets.xcassets */; };
+		C3D8112C29E151A2007686CC /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8112B29E151A2007686CC /* DailyView.swift */; };
+		C3D8112E29E15270007686CC /* LaunchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8112D29E15270007686CC /* LaunchesView.swift */; };
+		C3D8113029E15422007686CC /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8112F29E15422007686CC /* UIScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C30645B129E159A3005D9619 /* AppBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackground.swift; sourceTree = "<group>"; };
 		C3D8111829E1507A007686CC /* NASA API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D8111B29E1507A007686CC /* NASA_APIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASA_APIApp.swift; sourceTree = "<group>"; };
 		C3D8111D29E1507A007686CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C3D8111F29E1507B007686CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3D8112229E1507B007686CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C3D8112B29E151A2007686CC /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
+		C3D8112D29E15270007686CC /* LaunchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesView.swift; sourceTree = "<group>"; };
+		C3D8112F29E15422007686CC /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +61,12 @@
 			children = (
 				C3D8111B29E1507A007686CC /* NASA_APIApp.swift */,
 				C3D8111D29E1507A007686CC /* ContentView.swift */,
+				C3D8112B29E151A2007686CC /* DailyView.swift */,
+				C30645B129E159A3005D9619 /* AppBackground.swift */,
+				C3D8112F29E15422007686CC /* UIScreen.swift */,
 				C3D8111F29E1507B007686CC /* Assets.xcassets */,
 				C3D8112129E1507B007686CC /* Preview Content */,
+				C3D8112D29E15270007686CC /* LaunchesView.swift */,
 			);
 			path = "NASA API";
 			sourceTree = "<group>";
@@ -137,8 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3D8112C29E151A2007686CC /* DailyView.swift in Sources */,
+				C30645B229E159A3005D9619 /* AppBackground.swift in Sources */,
 				C3D8111E29E1507A007686CC /* ContentView.swift in Sources */,
 				C3D8111C29E1507A007686CC /* NASA_APIApp.swift in Sources */,
+				C3D8112E29E15270007686CC /* LaunchesView.swift in Sources */,
+				C3D8113029E15422007686CC /* UIScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

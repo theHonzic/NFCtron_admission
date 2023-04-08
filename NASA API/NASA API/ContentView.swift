@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    private enum Tab {
+        case daily, launches
+    }
+    @State private var selectedTab: Tab = .daily
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView(selection: $selectedTab) {
+            DailyView()
+                .tabItem {
+                    Label("Daily", systemImage: "picture")
+                }.tag(Tab.daily)
+            LaunchesView()
+                .tabItem {
+                    Label("Launches", systemImage: "calendar")
+                }.tag(Tab.launches)
         }
-        .padding()
     }
 }
 
