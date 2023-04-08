@@ -8,9 +8,22 @@
 import Foundation
 
 extension Date {
-    func inFormat(_ format: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: self)
+    func timeAgoString() -> String {
+        let calendar = Calendar.current
+        let now = Date.now
+        
+        let components = calendar.dateComponents([.day], from: self, to: now)
+        
+        if let days = components.day {
+            if days == 0 {
+                return "Today"
+            } else if days == 1 {
+                return "Yesterday"
+            } else {
+                return "\(days) days ago"
+            }
+        } else {
+            return ""
+        }
     }
 }

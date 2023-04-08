@@ -21,7 +21,7 @@ import SwiftUI
 
 extension DailyViewModel {
     func provideData() async {
-        if networkManager.isConnected {
+        if deviceIsConnected {
             Logger.log("Device is connected, fetching from API now...", .info)
             await fetchFromAPI()
             await saveToCoreData()

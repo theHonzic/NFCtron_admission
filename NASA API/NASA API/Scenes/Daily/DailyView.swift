@@ -19,12 +19,7 @@ struct DailyView: View {
                     Text("Explanation")
                         .font(.largeTitle)
                         .padding(.vertical)
-                    Text(viewModel.pod?.explanation ?? "")
-                    Button("Refresh") {
-                        Task {
-                            await viewModel.provideData()
-                        }
-                    }
+                    Text(viewModel.pod?.explanation ?? "Loading...")
                 }
                 .padding()
             }
@@ -55,14 +50,16 @@ struct DailyView: View {
                                     .padding(2)
                                     Spacer()
                                     Group {
-                                        Text(viewModel.pod?.date?.inFormat("dd. MM. yyyy") ?? "Loading...")
-                                            .foregroundColor(.gray)
-                                            .font(.callout)
-                                        Text("Loading...")
-                                            .font(.largeTitle)
+                                        if let date = viewModel.pod?.date {
+                                            Text("\(date.formatted(date: .numeric, time: .omitted))")
+                                                .foregroundColor(.gray)
+                                                .font(.callout)
+                                            
+                                            Text("\(date.timeAgoString())")
+                                                .font(.largeTitle)
                                             .foregroundColor(.white)
+                                        }
                                     }
-                                    .padding(.leading)
                                 }
                                 .padding()
                             )
@@ -82,14 +79,16 @@ struct DailyView: View {
                             .padding(2)
                             Spacer()
                             Group {
-                                Text("Loading...")
-                                    .foregroundColor(.gray)
-                                    .font(.callout)
-                                Text("Loading...")
-                                    .font(.largeTitle)
+                                if let date = viewModel.pod?.date {
+                                    Text("\(date.formatted(date: .numeric, time: .omitted))")
+                                        .foregroundColor(.gray)
+                                        .font(.callout)
+                                    
+                                    Text("\(date.timeAgoString())")
+                                        .font(.largeTitle)
                                     .foregroundColor(.white)
+                                }
                             }
-                            .padding(.leading)
                         }
                         .padding()
                     )
@@ -108,14 +107,16 @@ struct DailyView: View {
                         .padding(2)
                         Spacer()
                         Group {
-                            Text("Loading...")
-                                .foregroundColor(.gray)
-                                .font(.callout)
-                            Text("Loading...")
-                                .font(.largeTitle)
+                            if let date = viewModel.pod?.date {
+                                Text("\(date.formatted(date: .numeric, time: .omitted))")
+                                    .foregroundColor(.gray)
+                                    .font(.callout)
+                                
+                                Text("\(date.timeAgoString())")
+                                    .font(.largeTitle)
                                 .foregroundColor(.white)
+                            }
                         }
-                        .padding(.leading)
                     }
                     .padding()
                 )
