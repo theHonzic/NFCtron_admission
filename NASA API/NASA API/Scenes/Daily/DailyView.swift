@@ -37,7 +37,7 @@ struct DailyView: View {
     }
     
     @ViewBuilder func makeImage() -> some View {
-        WebImage(url: viewModel.pod?.hdurl)
+        WebImage(url: viewModel.pod?.hdURL)
             .placeholder{
                 WebImage(url: viewModel.pod?.url)
                     .placeholder {
@@ -55,7 +55,7 @@ struct DailyView: View {
                                     .padding(2)
                                     Spacer()
                                     Group {
-                                        Text("Loading...")
+                                        Text(viewModel.pod?.date?.inFormat("dd. MM. yyyy") ?? "Loading...")
                                             .foregroundColor(.gray)
                                             .font(.callout)
                                         Text("Loading...")

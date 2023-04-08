@@ -15,6 +15,13 @@
 		C34BE83129E2057E0040CEE8 /* DailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE83029E2057E0040CEE8 /* DailyViewModel.swift */; };
 		C34BE83429E205B40040CEE8 /* PicOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE83329E205B40040CEE8 /* PicOfDay.swift */; };
 		C34BE83729E20B610040CEE8 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C34BE83629E20B610040CEE8 /* SDWebImageSwiftUI */; };
+		C34BE83B29E20EDC0040CEE8 /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C34BE83929E20EDC0040CEE8 /* Database.xcdatamodeld */; };
+		C34BE83D29E20FD10040CEE8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE83C29E20FD10040CEE8 /* CoreDataManager.swift */; };
+		C34BE84029E210150040CEE8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE83F29E210150040CEE8 /* Logger.swift */; };
+		C34BE84229E210530040CEE8 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE84129E210530040CEE8 /* DIContainer.swift */; };
+		C34BE84429E2108F0040CEE8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE84329E2108F0040CEE8 /* NetworkManager.swift */; };
+		C34BE84629E210C60040CEE8 /* CDPod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE84529E210C60040CEE8 /* CDPod.swift */; };
+		C3BAD6DC29E221D80018B88B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BAD6DB29E221D80018B88B /* Date.swift */; };
 		C3D8111C29E1507A007686CC /* NASA_APIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8111B29E1507A007686CC /* NASA_APIApp.swift */; };
 		C3D8111E29E1507A007686CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8111D29E1507A007686CC /* ContentView.swift */; };
 		C3D8112029E1507B007686CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3D8111F29E1507B007686CC /* Assets.xcassets */; };
@@ -32,6 +39,13 @@
 		C34BE82C29E204B30040CEE8 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		C34BE83029E2057E0040CEE8 /* DailyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewModel.swift; sourceTree = "<group>"; };
 		C34BE83329E205B40040CEE8 /* PicOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicOfDay.swift; sourceTree = "<group>"; };
+		C34BE83A29E20EDC0040CEE8 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
+		C34BE83C29E20FD10040CEE8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C34BE83F29E210150040CEE8 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		C34BE84129E210530040CEE8 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		C34BE84329E2108F0040CEE8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C34BE84529E210C60040CEE8 /* CDPod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPod.swift; sourceTree = "<group>"; };
+		C3BAD6DB29E221D80018B88B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C3D8111829E1507A007686CC /* NASA API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D8111B29E1507A007686CC /* NASA_APIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASA_APIApp.swift; sourceTree = "<group>"; };
 		C3D8111D29E1507A007686CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				C3D8112F29E15422007686CC /* UIScreen.swift */,
+				C3BAD6DB29E221D80018B88B /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -123,6 +138,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C34BE83829E20ECA0040CEE8 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				C34BE83929E20EDC0040CEE8 /* Database.xcdatamodeld */,
+				C34BE83C29E20FD10040CEE8 /* CoreDataManager.swift */,
+				C34BE84529E210C60040CEE8 /* CDPod.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		C34BE83E29E2100D0040CEE8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C34BE83F29E210150040CEE8 /* Logger.swift */,
+				C34BE84129E210530040CEE8 /* DIContainer.swift */,
+				C34BE84329E2108F0040CEE8 /* NetworkManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		C3D8110F29E1507A007686CC = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +177,8 @@
 		C3D8111A29E1507A007686CC /* NASA API */ = {
 			isa = PBXGroup;
 			children = (
+				C34BE83E29E2100D0040CEE8 /* Utils */,
+				C34BE83829E20ECA0040CEE8 /* Persistence */,
 				C34BE83229E205A70040CEE8 /* Model */,
 				C34BE82B29E204A70040CEE8 /* Modifiers */,
 				C34BE82129E1F7140040CEE8 /* API */,
@@ -249,7 +286,14 @@
 				C3D8111C29E1507A007686CC /* NASA_APIApp.swift in Sources */,
 				C34BE83429E205B40040CEE8 /* PicOfDay.swift in Sources */,
 				C34BE82829E1F9640040CEE8 /* URLConstants.swift in Sources */,
+				C34BE84429E2108F0040CEE8 /* NetworkManager.swift in Sources */,
+				C34BE84029E210150040CEE8 /* Logger.swift in Sources */,
 				C3D8112E29E15270007686CC /* LaunchesView.swift in Sources */,
+				C34BE84229E210530040CEE8 /* DIContainer.swift in Sources */,
+				C34BE83B29E20EDC0040CEE8 /* Database.xcdatamodeld in Sources */,
+				C34BE83D29E20FD10040CEE8 /* CoreDataManager.swift in Sources */,
+				C3BAD6DC29E221D80018B88B /* Date.swift in Sources */,
+				C34BE84629E210C60040CEE8 /* CDPod.swift in Sources */,
 				C3D8113029E15422007686CC /* UIScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +514,19 @@
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		C34BE83929E20EDC0040CEE8 /* Database.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C34BE83A29E20EDC0040CEE8 /* Database.xcdatamodel */,
+			);
+			currentVersion = C34BE83A29E20EDC0040CEE8 /* Database.xcdatamodel */;
+			path = Database.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C3D8111029E1507A007686CC /* Project object */;
 }
