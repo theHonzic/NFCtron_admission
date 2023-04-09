@@ -47,6 +47,9 @@ final class DIContainer {
     }
     
     func registerDependencies() {
+        register(APIManaging.self, cached: true) {
+            APIManager()
+        }
         register(CoreDataManaging.self, cached: true) {
             CoreDataManager()
         }

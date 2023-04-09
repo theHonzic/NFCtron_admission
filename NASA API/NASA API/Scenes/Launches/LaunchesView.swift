@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct LaunchesView: View {
+    @StateObject private var viewModel: LaunchesViewModel = .init()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ForEach(viewModel.launches, id: \.id) { item in
+                Text(item.name ?? "nil")
+            }
+        }
+            .onFirstAppear {
+                Task {
+                    await viewModel.provideData()
+                }
+            }
     }
 }
 

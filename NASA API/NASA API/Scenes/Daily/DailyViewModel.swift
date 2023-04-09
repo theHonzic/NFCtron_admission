@@ -10,6 +10,7 @@ import SwiftUI
 
 @MainActor final class DailyViewModel: ObservableObject {
     @Injected private var coreDataManager: CoreDataManaging
+    @Injected private var apiManager: APIManaging
     @Injected private var networkManager: NetworkManager
     @Published var pod: PicOfDay?
     
@@ -31,16 +32,8 @@ extension DailyViewModel {
         }
     }
     private func fetchFromAPI() async {
-        do {
-            let url: URL = URLConstants.podURL
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let response = try? JSONDecoder().decode(APIPod.self, from: data)
-            if let entity = response.self{
-                self.pod = .init(from: entity)
-            }
-            Logger.log("Fetch completed.", .info)
-        } catch {
-            Logger.log("There was an error fetching picture of the day from API.\n\(error.localizedDescription)", .error)
+        if let object = await apiManager.fetchPOD() {
+            self.pod = .init(from: object)
         }
     }
     private func fetchFromCoreData() async {
@@ -58,18 +51,11 @@ extension DailyViewModel {
         }
     }
     private func saveToCoreData() async {
-        do {
-            removeLastFromCoreData()
-            let url: URL = URLConstants.podURL
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let response = try? JSONDecoder().decode(APIPod.self, from: data)
-            if let entity = response.self{
-                _ = await CDPod(from: entity, in: coreDataManager.viewContext)
-            }
-            Logger.log("Saved to Core Data", .success)
-        } catch {
-            Logger.log("There was an error saving picture of the day to Core Data.\n\(error.localizedDescription)", .error)
+        removeLastFromCoreData()
+        if let entity = await apiManager.fetchPOD() {
+            _ = await CDPod(from: entity, in: coreDataManager.viewContext)
         }
+        Logger.log("Saved to Core Data", .success)
     }
     private func removeLastFromCoreData() {
         do {

@@ -4,6 +4,7 @@
 //
 //  Created by Jan Janovec on 08.04.2023.
 //
+// swiftlint:disable type_name
 
 import SwiftUI
 

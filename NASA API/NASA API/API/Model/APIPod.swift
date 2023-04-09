@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct APIPod: Decodable {
+struct APIPod {
     var title: String?
     var explanation: String?
     var url: URL?
     var hdurl: URL?
     var date: String?
 }
+
+extension APIPod: Decodable {}
