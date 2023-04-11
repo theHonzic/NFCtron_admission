@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct APILaunch {
-    var fairings: Fairing?
-    var links: Links?
+struct APILaunch: Decodable {
+    var fairings: APIFairing?
+    var links: APILinks?
     var static_fire_date_unix: Int?
     var net: Bool?
     var window: Int?
     var rocket: String?
     var success: Bool?
-    var failures: [Failure]?
+    var failures: [APIFailure]
     var details: String?
     var crew: [String]?
     var ships: [String]?
@@ -27,16 +27,14 @@ struct APILaunch {
     var name: String?
     var date_unix: Int?
     var date_precision: String?
-    var upcoming: Bool?
-    var cores: [Core]
+    var upcoming: Bool
+    var cores: [APICore]
     var auto_update: Bool?
     var tbd: Bool?
     var id: String?
 }
 
-extension APILaunch: Decodable {}
-
-struct Core: Decodable {
+struct APICore: Decodable {
     var core: String?
     var flight: Int?
     var gridfins: Bool?
@@ -45,42 +43,42 @@ struct Core: Decodable {
     var landing_attempt: Bool?
 }
 
-struct Fairing: Decodable {
+struct APIFairing: Decodable {
     var reused: Bool?
     var recovery_attempt: Bool?
     var recovered: Bool?
     var ships: [String]?
 }
 
-struct PatchLink: Decodable {
-    var small: URL?
-    var large: URL?
+struct APIPatchLink: Decodable {
+    var small: String?
+    var large: String?
 }
 
-struct RedditLink: Decodable {
-    var campaign: URL?
-    var launch: URL?
-    var media: URL?
-    var recovery: URL?
+struct APIRedditLink: Decodable {
+    var campaign: String?
+    var launch: String?
+    var media: String?
+    var recovery: String?
 }
 
-struct FlickrLink: Decodable {
-    var small: [URL]?
-    var original: [URL]?
+struct APIFlickrLink: Decodable {
+    var small: [String]?
+    var original: [String]?
 }
 
-struct Links: Decodable {
-    var patch: PatchLink
-    var reddit: RedditLink
-    var flickr: FlickrLink
-    var presskit: URL?
-    var webcast: URL?
+struct APILinks: Decodable {
+    var patch: APIPatchLink
+    var reddit: APIRedditLink
+    var flickr: APIFlickrLink
+    var presskit: String?
+    var webcast: String?
     var youtube_id: String?
-    var article: URL?
-    var wikipedia: URL?
+    var article: String?
+    var wikipedia: String?
 }
 
-struct Failure: Decodable {
+struct APIFailure: Decodable {
     var time: Int?
     var altitude: Int?
     var reason: String?

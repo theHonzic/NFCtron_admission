@@ -22,7 +22,11 @@
 		C34BE84429E2108F0040CEE8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE84329E2108F0040CEE8 /* NetworkManager.swift */; };
 		C34BE84629E210C60040CEE8 /* CDPod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BE84529E210C60040CEE8 /* CDPod.swift */; };
 		C382BE4E29E2B2BF00DAFBAD /* LaunchesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382BE4D29E2B2BF00DAFBAD /* LaunchesRouter.swift */; };
+		C382BE5029E2B5D000DAFBAD /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382BE4F29E2B5D000DAFBAD /* Launch.swift */; };
+		C382BE5229E2BC4000DAFBAD /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382BE5129E2BC4000DAFBAD /* URL.swift */; };
+		C382BE5729E2CC1600DAFBAD /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382BE5629E2CC1600DAFBAD /* UserDefaultsManager.swift */; };
 		C3BAD6DE29E2341C0018B88B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BAD6DD29E2341C0018B88B /* Date.swift */; };
+		C3BF9FA129E5C9970089E63E /* CDLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BF9FA029E5C9970089E63E /* CDLaunch.swift */; };
 		C3D7F28329E29BAD005DB5BB /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7F28229E29BAD005DB5BB /* LaunchesViewModel.swift */; };
 		C3D7F28529E29F1D005DB5BB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7F28429E29F1D005DB5BB /* Endpoint.swift */; };
 		C3D7F28829E29F7E005DB5BB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7F28729E29F7E005DB5BB /* HTTPMethod.swift */; };
@@ -54,7 +58,11 @@
 		C34BE84329E2108F0040CEE8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C34BE84529E210C60040CEE8 /* CDPod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPod.swift; sourceTree = "<group>"; };
 		C382BE4D29E2B2BF00DAFBAD /* LaunchesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesRouter.swift; sourceTree = "<group>"; };
+		C382BE4F29E2B5D000DAFBAD /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
+		C382BE5129E2BC4000DAFBAD /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		C382BE5629E2CC1600DAFBAD /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		C3BAD6DD29E2341C0018B88B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		C3BF9FA029E5C9970089E63E /* CDLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDLaunch.swift; sourceTree = "<group>"; };
 		C3D7F28229E29BAD005DB5BB /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
 		C3D7F28429E29F1D005DB5BB /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		C3D7F28729E29F7E005DB5BB /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -99,6 +107,7 @@
 			children = (
 				C3D8112F29E15422007686CC /* UIScreen.swift */,
 				C3BAD6DD29E2341C0018B88B /* Date.swift */,
+				C382BE5129E2BC4000DAFBAD /* URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -154,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				C34BE83329E205B40040CEE8 /* PicOfDay.swift */,
+				C382BE4F29E2B5D000DAFBAD /* Launch.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +174,7 @@
 				C34BE83929E20EDC0040CEE8 /* Database.xcdatamodeld */,
 				C34BE83C29E20FD10040CEE8 /* CoreDataManager.swift */,
 				C34BE84529E210C60040CEE8 /* CDPod.swift */,
+				C3BF9FA029E5C9970089E63E /* CDLaunch.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -174,6 +185,7 @@
 				C34BE83F29E210150040CEE8 /* Logger.swift */,
 				C34BE84129E210530040CEE8 /* DIContainer.swift */,
 				C34BE84329E2108F0040CEE8 /* NetworkManager.swift */,
+				C382BE5629E2CC1600DAFBAD /* UserDefaultsManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -338,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3D8112C29E151A2007686CC /* DailyView.swift in Sources */,
+				C3BF9FA129E5C9970089E63E /* CDLaunch.swift in Sources */,
 				C30645B229E159A3005D9619 /* AppBackground.swift in Sources */,
 				C3D7F29329E2A1BB005DB5BB /* PODRouter.swift in Sources */,
 				C34BE82429E1F7840040CEE8 /* APIPod.swift in Sources */,
@@ -355,12 +368,15 @@
 				C3D8112E29E15270007686CC /* LaunchesView.swift in Sources */,
 				C382BE4E29E2B2BF00DAFBAD /* LaunchesRouter.swift in Sources */,
 				C34BE84229E210530040CEE8 /* DIContainer.swift in Sources */,
+				C382BE5029E2B5D000DAFBAD /* Launch.swift in Sources */,
+				C382BE5229E2BC4000DAFBAD /* URL.swift in Sources */,
 				C3D7F28829E29F7E005DB5BB /* HTTPMethod.swift in Sources */,
 				C3D7F28E29E29FED005DB5BB /* HTTPHeader.swift in Sources */,
 				C34BE83B29E20EDC0040CEE8 /* Database.xcdatamodeld in Sources */,
 				C34BE83D29E20FD10040CEE8 /* CoreDataManager.swift in Sources */,
 				C3D7F28529E29F1D005DB5BB /* Endpoint.swift in Sources */,
 				C3BAD6DE29E2341C0018B88B /* Date.swift in Sources */,
+				C382BE5729E2CC1600DAFBAD /* UserDefaultsManager.swift in Sources */,
 				C3D7F28329E29BAD005DB5BB /* LaunchesViewModel.swift in Sources */,
 				C34BE84629E210C60040CEE8 /* CDPod.swift in Sources */,
 				C3D8113029E15422007686CC /* UIScreen.swift in Sources */,

@@ -53,7 +53,9 @@ final class DIContainer {
         register(CoreDataManaging.self, cached: true) {
             CoreDataManager()
         }
-        
+        register(UserDefaultsManaging.self, cached: true) {
+            UserDefaultsManager()
+        }
         register(NetworkManager.self, cached: true) {
             NetworkManager()
         }
