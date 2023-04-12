@@ -77,13 +77,9 @@ struct LaunchesView: View {
                         viewModel.isAlertPresented = true
                     }
             }
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: [.init(.flexible(minimum: 90, maximum: 100)), .init(.flexible(minimum: 90, maximum: 100))]) {
-                    ForEach(viewModel.pinnedLaunches, id: \.id) { item in
-                        makeCard(for: item)
-                            .padding()
-                    }
-                }
+            ForEach(viewModel.pinnedLaunches, id: \.id) { item in
+                makeCard(for: item)
+                    .padding()
             }
         }
     }
