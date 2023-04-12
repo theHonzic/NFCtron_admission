@@ -16,11 +16,20 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             DailyView()
                 .tabItem {
-                    Label("Daily", systemImage: "picture")
+                    VStack {
+                        Image(systemName: "photo.artframe")
+                            .padding()
+                            .background(.yellow)
+                        Text("Daily")
+                    }
+                    .background(.yellow)
                 }.tag(Tab.daily)
             LaunchesView()
                 .tabItem {
-                    Label("Launches", systemImage: "calendar")
+                    VStack {
+                        Image(systemName: selectedTab == .launches ? "calendar.circle" : "calendar.circle")
+                        Text("Launches")
+                    }
                 }.tag(Tab.launches)
         }
     }

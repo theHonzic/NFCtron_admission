@@ -12,15 +12,18 @@ struct LaunchesView: View {
     @StateObject private var viewModel: LaunchesViewModel = .init()
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack {
-                    if viewModel.searchedText.isEmpty {
-                        makeNonSearchingView()
-                    } else {
-                        makeSearchingView()
+            ZStack {
+                AppBackground()
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack {
+                        if viewModel.searchedText.isEmpty {
+                            makeNonSearchingView()
+                        } else {
+                            makeSearchingView()
+                        }
                     }
+                    .padding(.horizontal)
                 }
-                .padding()
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -47,7 +50,8 @@ struct LaunchesView: View {
     }
     @ViewBuilder func makeSearchingView() -> some View {
         ForEach(viewModel.searchResults, id: \.id) { item in
-            Text(item.name)
+            makeCard(for: item)
+                .padding()
         }
     }
     @ViewBuilder func makeNonSearchingView() -> some View {
@@ -73,7 +77,7 @@ struct LaunchesView: View {
                         viewModel.isAlertPresented = true
                     }
             }
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: [.init(.flexible(minimum: 90, maximum: 100)), .init(.flexible(minimum: 90, maximum: 100))]) {
                     ForEach(viewModel.pinnedLaunches, id: \.id) { item in
                         makeCard(for: item)
@@ -117,7 +121,7 @@ struct LaunchesView: View {
                         .foregroundColor(Color("searchText"))
                 }
             }
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: [.init(.flexible(minimum: 90, maximum: 100)), .init(.flexible(minimum: 90, maximum: 100))]) {
                     ForEach(viewModel.unpinnedLaunches, id: \.id) { item in
                         makeCard(for: item)
@@ -152,7 +156,7 @@ struct LaunchesView: View {
                             }
                             .frame(width: 40, height: 40)
                     } else {
-                        Color.white
+                        Color("AppBackground")
                             .frame(width: 40, height: 40)
                     }
                     VStack(alignment: .leading) {

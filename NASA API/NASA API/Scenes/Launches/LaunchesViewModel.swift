@@ -17,7 +17,7 @@ import Foundation
     @Published var sortingBy: SortType = .az
     
     var filteredLaunches: [Launch] {
-        return self.launches.filter { $0.upcoming }
+        return self.launches//.filter { $0.upcoming }
     }
     var pinnedLaunches: [Launch] {
         return self.filteredLaunches.filter { $0.pinned }.sorted { $0.name < $1.name }
@@ -39,7 +39,7 @@ import Foundation
                 return payload.uppercased().contains(self.searchedText.uppercased())
             }
             return launchNameContainsText || payloadContainsText
-        }
+        }.sorted { $0.pinned && !$1.pinned }
     }
 
     enum SortType {

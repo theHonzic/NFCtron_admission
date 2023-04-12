@@ -13,7 +13,7 @@ struct DailyView: View {
     var body: some View {
         ZStack {
             AppBackground()
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     makeImage()
                     Text("Explanation")
