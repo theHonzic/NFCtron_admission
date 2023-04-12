@@ -12,7 +12,12 @@ import Foundation
     @Injected private var coreDataManager: CoreDataManaging
     @Injected private var userDefaultsManager: UserDefaultsManaging
     @Published var launches: [Launch] = .init()
-
+    @Published var searchedText: String = ""
+    @Published var isAlertPresented = false
+    
+    var filteredLaunches: [Launch] {
+        return self.launches.filter { $0.upcoming }
+    }
 }
 
 extension LaunchesViewModel {
@@ -32,7 +37,7 @@ extension LaunchesViewModel {
         do {
             let request = CDLaunch.fetchRequest()
             let items = try coreDataManager.viewContext.fetch(request)
-            if let item = items.first(where: { $0.id == launch.id} ) {
+            if let item = items.first(where: { $0.id == launch.id }) {
                 if item.pinned {
                     item.pinned = false
                 } else {
@@ -41,25 +46,42 @@ extension LaunchesViewModel {
                 try coreDataManager.viewContext.save()
             }
         } catch {
-            Logger.log("There was an error removing picture of the day from Core Data.\n\(error.localizedDescription)", .error)
+            Logger.log("There was an error toggling pinned.\n\(error.localizedDescription)", .error)
+        }
+        await fetchLaunchesFromCoreData()
+    }
+    func unpinAll() async {
+        do {
+            let request = CDLaunch.fetchRequest()
+            let items = try coreDataManager.viewContext.fetch(request)
+            for item in items where item.pinned {
+                item.pinned = false
+            }
+            try coreDataManager.viewContext.save()
+        } catch {
+            Logger.log("There was an error unpining all.\n\(error.localizedDescription)", .error)
         }
         await fetchLaunchesFromCoreData()
     }
     private func fetchLaunchesFromAPI() async {
+        Logger.log("Fetching from API.", .info)
         let objects = await apiManager.fetchLaunches()
+        Logger.log("Count: \(objects.count).", .info)
         for object in objects {
+            Logger.log("Writing to Core Data. \(object.id)", .info)
             _ = CDLaunch(from: object, in: coreDataManager.viewContext)
         }
     }
     private func fetchLaunchesFromCoreData() async {
+        Logger.log("Fetching from Core Data.", .info)
         do {
-            launches.removeAll()
             let request = CDLaunch.fetchRequest()
             request.sortDescriptors = [
                 .init(key: "launchDate", ascending: true)
             ]
             let items = try coreDataManager.viewContext.fetch(request)
-            for item in items {
+            launches.removeAll()
+            for item in items where item.upcoming {
                 launches.append(.init(from: item))
             }
         } catch {

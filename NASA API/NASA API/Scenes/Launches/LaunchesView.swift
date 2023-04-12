@@ -11,32 +11,97 @@ import SwiftUI
 struct LaunchesView: View {
     @StateObject private var viewModel: LaunchesViewModel = .init()
     var body: some View {
-        VStack {
-            Spacer()
-            ScrollView(.horizontal) {
-                LazyHGrid(rows: [.init(.flexible(minimum: 50, maximum: 100)), .init(.flexible(minimum: 50, maximum: 100))]) {
-                    ForEach(viewModel.launches.filter { $0.pinned }, id: \.id) { item in
-                        makeCard(for: item)
-                            .padding()
+        NavigationView {
+            ScrollView {
+                LazyVStack {
+                    if viewModel.filteredLaunches.contains { $0.pinned } {
+                        makePinned()
+                        Spacer()
+                    }
+                    if viewModel.filteredLaunches.contains { !$0.pinned } {
+                        makeUnpinned()
+                        Spacer()
                     }
                 }
+                .padding()
             }
-            Spacer()
-            ScrollView(.horizontal) {
-                LazyHGrid(rows: [.init(.flexible(minimum: 50, maximum: 100)), .init(.flexible(minimum: 50, maximum: 100))]) {
-                    ForEach(viewModel.launches.filter { !$0.pinned }, id: \.id) { item in
-                        makeCard(for: item)
-                            .padding()
-                    }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    makeSearchbar()
+                        .padding(20)
                 }
             }
-            Spacer()
+        }
+        .alert("Are you sure you want to unpin all launches?", isPresented: $viewModel.isAlertPresented) {
+            Button("Yes") {
+                Task {
+                    await viewModel.unpinAll()
+                }
+            }
+            Button("No", role: .cancel) {
+                viewModel.isAlertPresented = false
+            }
         }
         .onFirstAppear {
             Task {
                 await viewModel.provideData()
             }
         }
+    }
+    @ViewBuilder func makePinned() -> some View {
+        VStack {
+            HStack(alignment: .bottom) {
+                Text("Pinned")
+                    .font(.title2)
+                Spacer()
+                Text("Unpin all")
+                    .font(.caption)
+                    .foregroundColor(Color("searchText"))
+                    .onTapGesture {
+                        viewModel.isAlertPresented = true
+                    }
+            }
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: [.init(.flexible(minimum: 90, maximum: 100)), .init(.flexible(minimum: 90, maximum: 100))]) {
+                    ForEach(viewModel.launches.filter { $0.pinned }, id: \.id) { item in
+                        makeCard(for: item)
+                            .padding()
+                    }
+                }
+            }
+        }
+    }
+    @ViewBuilder func makeUnpinned() -> some View {
+        VStack {
+            HStack(alignment: .bottom) {
+                Text("Upcoming")
+                    .font(.title2)
+                Spacer()
+                Text("Sort by")
+                    .font(.caption)
+                    .foregroundColor(Color("searchText"))
+            }
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: [.init(.flexible(minimum: 90, maximum: 100)), .init(.flexible(minimum: 90, maximum: 100))]) {
+                    ForEach(viewModel.launches.filter { !$0.pinned }, id: \.id) { item in
+                        makeCard(for: item)
+                            .padding()
+                    }
+                }
+            }
+        }
+    }
+    @ViewBuilder func makeSearchbar() -> some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(Color("searchText"))
+            TextField("Type in mission name or payload name...", text: $viewModel.searchedText)
+                .foregroundColor(Color("searchText"))
+                .font(.callout)
+        }
+        .padding(8)
+        .background(Color("searchField"))
+        .clipShape(RoundedRectangle(cornerRadius: 5))
     }
     @ViewBuilder func makeCard(for launch: Launch) -> some View {
         HStack {
@@ -58,7 +123,7 @@ struct LaunchesView: View {
                         Text(launch.name)
                             .fontWeight(.semibold)
                         if let date = launch.launchDate {
-                            Text("Launch in \(date.formatted(date: .numeric, time: .omitted))")
+                            Text("\(date.getInfoIn())")
                                 .font(.caption)
                         }
                     }
@@ -95,11 +160,11 @@ struct LaunchesView: View {
             }
             Spacer()
             Image(systemName: "paperclip")
-                .foregroundColor(launch.pinned ? .white : .secondary)
+                .foregroundColor(launch.pinned ? Color("searchField") : .secondary)
                 .padding()
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-                .background(launch.pinned ? .yellow : .white)
+                .background(launch.pinned ? .yellow : Color("searchField"))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .onTapGesture {
                     Task {
@@ -107,7 +172,7 @@ struct LaunchesView: View {
                     }
                 }
         }
-        .frame(width: UIScreen.screenWidth * 0.9)
+        .frame(width: UIScreen.screenWidth * 0.85)
     }
 }
 

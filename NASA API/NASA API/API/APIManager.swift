@@ -65,7 +65,8 @@ final class APIManager: APIManaging {
         let endpoint: LaunchesRouter = .init()
         do {
             let response: [APILaunch] = try await request(endpoint, spaceX: true)
-            for item in response where { item.upcoming }() {
+            // for item in response where { item.upcoming }() {
+            for item in response {
                 items.append(item)
             }
         } catch {

@@ -6,7 +6,9 @@
         <attribute name="lstLink" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="patch" optional="YES" attributeType="String"/>
+        <attribute name="payloads" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="pinned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="upcoming" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wikiLink" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CDPod" representedClassName="CDPod" syncable="YES" codeGenerationType="class">

@@ -16,6 +16,13 @@ extension CDLaunch {
         self.wikiLink = entity.links?.wikipedia
         self.patch = entity.links?.patch.small
         self.pinned = false
+        self.payloads = .init()
+        if let payloads = entity.payloads {
+            for payload in payloads {
+                self.payloads?.append(payload)
+            }
+        }
+        self.upcoming = entity.upcoming
         if let date = entity.date_unix {
             self.launchDate = .init(timeIntervalSince1970: .init(date))
         }
