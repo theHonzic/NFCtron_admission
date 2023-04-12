@@ -14,9 +14,36 @@ import Foundation
     @Published var launches: [Launch] = .init()
     @Published var searchedText: String = ""
     @Published var isAlertPresented = false
+    @Published var sortingBy: SortType = .az
     
     var filteredLaunches: [Launch] {
         return self.launches.filter { $0.upcoming }
+    }
+    var pinnedLaunches: [Launch] {
+        return self.filteredLaunches.filter { $0.pinned }.sorted { $0.name < $1.name }
+    }
+    var unpinnedLaunches: [Launch] {
+        switch self.sortingBy {
+        case .az:
+            return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.name < $1.name }
+        case .za:
+            return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.name > $1.name }
+        case .nearest:
+            return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.launchDate ?? .distantPast < $1.launchDate ?? .distantFuture }
+        }
+    }
+    var searchResults: [Launch] {
+        return self.filteredLaunches.filter { launch in
+            let launchNameContainsText = launch.name.uppercased().contains(self.searchedText.uppercased())
+            let payloadContainsText = launch.payloads.contains { payload in
+                return payload.uppercased().contains(self.searchedText.uppercased())
+            }
+            return launchNameContainsText || payloadContainsText
+        }
+    }
+
+    enum SortType {
+        case az, za, nearest
     }
 }
 
@@ -32,6 +59,9 @@ extension LaunchesViewModel {
             await fetchLaunchesFromCoreData()
             userDefaultsManager.runFirst()
         }
+    }
+    func switchSort(to type: SortType) {
+        self.sortingBy = type
     }
     func togglePinned(for launch: Launch) async {
         do {

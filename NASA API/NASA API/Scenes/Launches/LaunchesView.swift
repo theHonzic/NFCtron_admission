@@ -14,13 +14,10 @@ struct LaunchesView: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    if viewModel.filteredLaunches.contains { $0.pinned } {
-                        makePinned()
-                        Spacer()
-                    }
-                    if viewModel.filteredLaunches.contains { !$0.pinned } {
-                        makeUnpinned()
-                        Spacer()
+                    if viewModel.searchedText.isEmpty {
+                        makeNonSearchingView()
+                    } else {
+                        makeSearchingView()
                     }
                 }
                 .padding()
@@ -48,6 +45,21 @@ struct LaunchesView: View {
             }
         }
     }
+    @ViewBuilder func makeSearchingView() -> some View {
+        ForEach(viewModel.searchResults, id: \.id) { item in
+            Text(item.name)
+        }
+    }
+    @ViewBuilder func makeNonSearchingView() -> some View {
+        if !viewModel.pinnedLaunches.isEmpty {
+            makePinned()
+            Spacer()
+        }
+        if !viewModel.unpinnedLaunches.isEmpty {
+            makeUnpinned()
+            Spacer()
+        }
+    }
     @ViewBuilder func makePinned() -> some View {
         VStack {
             HStack(alignment: .bottom) {
@@ -63,7 +75,7 @@ struct LaunchesView: View {
             }
             ScrollView(.horizontal) {
                 LazyHGrid(rows: [.init(.flexible(minimum: 90, maximum: 100)), .init(.flexible(minimum: 90, maximum: 100))]) {
-                    ForEach(viewModel.launches.filter { $0.pinned }, id: \.id) { item in
+                    ForEach(viewModel.pinnedLaunches, id: \.id) { item in
                         makeCard(for: item)
                             .padding()
                     }
@@ -77,13 +89,37 @@ struct LaunchesView: View {
                 Text("Upcoming")
                     .font(.title2)
                 Spacer()
-                Text("Sort by")
-                    .font(.caption)
-                    .foregroundColor(Color("searchText"))
+                Menu {
+                    Button {
+                        withAnimation(.easeIn) {
+                            viewModel.switchSort(to: .az)
+                        }
+                    } label: {
+                        Label("A-Z", systemImage: viewModel.sortingBy == .az ? "checkmark" : "")
+                    }
+                    Button {
+                        withAnimation(.easeIn) {
+                            viewModel.switchSort(to: .za)
+                        }
+                    } label: {
+                        Label("Z-A", systemImage: viewModel.sortingBy == .za ? "checkmark" : "")
+                    }
+                    Button {
+                        withAnimation(.easeIn) {
+                            viewModel.switchSort(to: .nearest)
+                        }
+                    } label: {
+                        Label("Date", systemImage: viewModel.sortingBy == .nearest ? "checkmark" : "")
+                    }
+                } label: {
+                    Text("Sort by")
+                        .font(.caption)
+                        .foregroundColor(Color("searchText"))
+                }
             }
             ScrollView(.horizontal) {
                 LazyHGrid(rows: [.init(.flexible(minimum: 90, maximum: 100)), .init(.flexible(minimum: 90, maximum: 100))]) {
-                    ForEach(viewModel.launches.filter { !$0.pinned }, id: \.id) { item in
+                    ForEach(viewModel.unpinnedLaunches, id: \.id) { item in
                         makeCard(for: item)
                             .padding()
                     }
