@@ -16,8 +16,8 @@ import Foundation
     @Published var isAlertPresented = false
     @Published var sortingBy: SortType = .az
     
-    var filteredLaunches: [Launch] {
-        return self.launches//.filter { $0.upcoming }
+    private var filteredLaunches: [Launch] {
+        return self.launches.filter { $0.upcoming }
     }
     var pinnedLaunches: [Launch] {
         return self.filteredLaunches.filter { $0.pinned }.sorted { $0.name < $1.name }
@@ -25,9 +25,9 @@ import Foundation
     var unpinnedLaunches: [Launch] {
         switch self.sortingBy {
         case .az:
-            return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.name < $1.name }
+            return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.name.uppercased() < $1.name.uppercased() }
         case .za:
-            return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.name > $1.name }
+            return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.name.uppercased() > $1.name.uppercased() }
         case .nearest:
             return self.filteredLaunches.filter { !$0.pinned }.sorted { $0.launchDate ?? .distantPast < $1.launchDate ?? .distantFuture }
         }
@@ -43,13 +43,14 @@ import Foundation
     }
 
     enum SortType {
+        // swiftlint:disable:next identifier_name
         case az, za, nearest
     }
 }
 
 extension LaunchesViewModel {
     func provideData() async {
-        if !userDefaultsManager.isRunningForTheFirstTime() {
+        if !userDefaultsManager.alreadyRun() {
             Logger.log("Providing data for launches. Running for the first time", .info)
             await fetchLaunchesFromAPI()
             await fetchLaunchesFromCoreData()
@@ -98,7 +99,6 @@ extension LaunchesViewModel {
         let objects = await apiManager.fetchLaunches()
         Logger.log("Count: \(objects.count).", .info)
         for object in objects {
-            Logger.log("Writing to Core Data. \(object.id)", .info)
             _ = CDLaunch(from: object, in: coreDataManager.viewContext)
         }
     }

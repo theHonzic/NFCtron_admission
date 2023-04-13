@@ -8,12 +8,12 @@
 import Foundation
 
 protocol UserDefaultsManaging {
-    func isRunningForTheFirstTime() -> Bool
+    func alreadyRun() -> Bool
     func runFirst()
 }
 
 final class UserDefaultsManager: UserDefaultsManaging {
-    func isRunningForTheFirstTime() -> Bool {
+    func alreadyRun() -> Bool {
         if let value = UserDefaults.standard.value(forKey: "FirstRun") {
             return value as! Bool
         } else {

@@ -8,11 +8,11 @@
 import Foundation
 
 struct PODRouter: Endpoint {
-    var method: HTTPMethod = {
-        return .get
-    }()
+    var path: URL {
+        return URLConstants.podURL
+    }
     
-    var urlParameters: [String : String]? = {
-        return ["api_key" : "XGLlFo3nUkLC9ehBISGEG0dFsNxKMabxfM2E8aIO"]
+    var urlParameters: [String: String]? = {
+        return ["api_key": "XGLlFo3nUkLC9ehBISGEG0dFsNxKMabxfM2E8aIO"]
     }()
 }

@@ -13,7 +13,6 @@ import SwiftUI
     @Injected private var apiManager: APIManaging
     @Injected private var networkManager: NetworkManager
     @Published var pod: PicOfDay?
-    
     var deviceIsConnected: Bool {
         return networkManager.isConnected
     }

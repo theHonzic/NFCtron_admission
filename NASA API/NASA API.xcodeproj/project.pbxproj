@@ -25,8 +25,6 @@
 		C382BE5029E2B5D000DAFBAD /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382BE4F29E2B5D000DAFBAD /* Launch.swift */; };
 		C382BE5229E2BC4000DAFBAD /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382BE5129E2BC4000DAFBAD /* URL.swift */; };
 		C382BE5729E2CC1600DAFBAD /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382BE5629E2CC1600DAFBAD /* UserDefaultsManager.swift */; };
-		C39B13DB29E6E0C500584D9F /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B13DA29E6E0C500584D9F /* RoundedCorners.swift */; };
-		C39B13DD29E6E20C00584D9F /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B13DC29E6E20C00584D9F /* View.swift */; };
 		C3BAD6DE29E2341C0018B88B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BAD6DD29E2341C0018B88B /* Date.swift */; };
 		C3BF9FA129E5C9970089E63E /* CDLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BF9FA029E5C9970089E63E /* CDLaunch.swift */; };
 		C3D7F28329E29BAD005DB5BB /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7F28229E29BAD005DB5BB /* LaunchesViewModel.swift */; };
@@ -63,8 +61,6 @@
 		C382BE4F29E2B5D000DAFBAD /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		C382BE5129E2BC4000DAFBAD /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		C382BE5629E2CC1600DAFBAD /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
-		C39B13DA29E6E0C500584D9F /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
-		C39B13DC29E6E20C00584D9F /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		C3BAD6DD29E2341C0018B88B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C3BF9FA029E5C9970089E63E /* CDLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDLaunch.swift; sourceTree = "<group>"; };
 		C3D7F28229E29BAD005DB5BB /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
@@ -112,7 +108,6 @@
 				C3D8112F29E15422007686CC /* UIScreen.swift */,
 				C3BAD6DD29E2341C0018B88B /* Date.swift */,
 				C382BE5129E2BC4000DAFBAD /* URL.swift */,
-				C39B13DC29E6E20C00584D9F /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -198,7 +193,7 @@
 		C39B13D929E6E0BC00584D9F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C39B13DA29E6E0C500584D9F /* RoundedCorners.swift */,
+				C30645B129E159A3005D9619 /* AppBackground.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,18 +237,17 @@
 		C3D8111A29E1507A007686CC /* NASA API */ = {
 			isa = PBXGroup;
 			children = (
-				C39B13D929E6E0BC00584D9F /* Views */,
-				C34BE83E29E2100D0040CEE8 /* Utils */,
-				C34BE83829E20ECA0040CEE8 /* Persistence */,
+				C34BE82129E1F7140040CEE8 /* API */,
+				C3D8111F29E1507B007686CC /* Assets.xcassets */,
+				C34BE82029E1F6C30040CEE8 /* Extensions */,
 				C34BE83229E205A70040CEE8 /* Model */,
 				C34BE82B29E204A70040CEE8 /* Modifiers */,
-				C34BE82129E1F7140040CEE8 /* API */,
-				C34BE82029E1F6C30040CEE8 /* Extensions */,
-				C34BE81F29E1F6B40040CEE8 /* Scenes */,
 				C3D8111B29E1507A007686CC /* NASA_APIApp.swift */,
-				C30645B129E159A3005D9619 /* AppBackground.swift */,
-				C3D8111F29E1507B007686CC /* Assets.xcassets */,
+				C34BE83829E20ECA0040CEE8 /* Persistence */,
 				C3D8112129E1507B007686CC /* Preview Content */,
+				C34BE81F29E1F6B40040CEE8 /* Scenes */,
+				C34BE83E29E2100D0040CEE8 /* Utils */,
+				C39B13D929E6E0BC00584D9F /* Views */,
 			);
 			path = "NASA API";
 			sourceTree = "<group>";
@@ -383,7 +377,6 @@
 				C382BE4E29E2B2BF00DAFBAD /* LaunchesRouter.swift in Sources */,
 				C34BE84229E210530040CEE8 /* DIContainer.swift in Sources */,
 				C382BE5029E2B5D000DAFBAD /* Launch.swift in Sources */,
-				C39B13DD29E6E20C00584D9F /* View.swift in Sources */,
 				C382BE5229E2BC4000DAFBAD /* URL.swift in Sources */,
 				C3D7F28829E29F7E005DB5BB /* HTTPMethod.swift in Sources */,
 				C3D7F28E29E29FED005DB5BB /* HTTPHeader.swift in Sources */,
@@ -392,7 +385,6 @@
 				C3D7F28529E29F1D005DB5BB /* Endpoint.swift in Sources */,
 				C3BAD6DE29E2341C0018B88B /* Date.swift in Sources */,
 				C382BE5729E2CC1600DAFBAD /* UserDefaultsManager.swift in Sources */,
-				C39B13DB29E6E0C500584D9F /* RoundedCorners.swift in Sources */,
 				C3D7F28329E29BAD005DB5BB /* LaunchesViewModel.swift in Sources */,
 				C34BE84629E210C60040CEE8 /* CDPod.swift in Sources */,
 				C3D8113029E15422007686CC /* UIScreen.swift in Sources */,
@@ -519,8 +511,9 @@
 		C3D8112729E1507B007686CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = CustomIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NASA API/Preview Content\"";
@@ -548,8 +541,9 @@
 		C3D8112829E1507B007686CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = CustomIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NASA API/Preview Content\"";

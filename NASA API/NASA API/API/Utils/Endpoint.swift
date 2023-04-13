@@ -9,8 +9,8 @@ import Foundation
 protocol Endpoint {
     var method: HTTPMethod { get }
     var urlParameters: [String: String]? { get }
-
-    func asRequest(spaceX: Bool) throws -> URLRequest
+    func asRequest() throws -> URLRequest
+    var path: URL { get }
 }
 
 extension Endpoint {
@@ -18,21 +18,16 @@ extension Endpoint {
         return nil
     }
     
+    var method: HTTPMethod {
+        return .get
+    }
     var headers: [String: String]? {
         return nil
     }
 
-    func asRequest(spaceX: Bool) throws -> URLRequest {
-        // Getting base url, chat has a different baseURL
-        var fullPath: URL
-        if spaceX {
-            fullPath = URLConstants.launchesURL
-        } else {
-            fullPath = URLConstants.podURL
-        }
-        
+    func asRequest() throws -> URLRequest {
         // Checking the url components
-        guard var components = URLComponents(url: fullPath, resolvingAgainstBaseURL: true) else {
+        guard var components = URLComponents(url: path, resolvingAgainstBaseURL: true) else {
             throw APIError.invalidUrlComponents
         }
         
@@ -40,7 +35,6 @@ extension Endpoint {
             components.queryItems = parameters.map {
                 URLQueryItem(name: $0, value: String(describing: $1))
             }
-            // Returns an array of parameters ([(language, en), ...])
         }
         
         guard let url = components.url else {

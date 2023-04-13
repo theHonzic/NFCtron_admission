@@ -8,7 +8,7 @@
 import Foundation
 
 protocol APIManaging {
-    func request<T: Decodable>(_ endpoint: Endpoint, spaceX: Bool) async throws -> T
+    func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T
     func fetchPOD() async -> APIPod?
     func fetchLaunches() async -> [APILaunch]
 }
@@ -22,10 +22,10 @@ final class APIManager: APIManaging {
         return URLSession(configuration: config)
     }()
     
-    func request(_ endpoint: Endpoint, spaceX: Bool) async throws -> Data {
-        let request: URLRequest = try endpoint.asRequest(spaceX: spaceX)
+    func request(_ endpoint: Endpoint) async throws -> Data {
+        let request: URLRequest = try endpoint.asRequest()
         
-        Logger.log("Requesting data from \(request.description)", .info)
+        Logger.log("Requesting data from:\n\(request.description)", .info)
         
         let (data, response) = try await urlSession.data(for: request)
         
@@ -40,9 +40,9 @@ final class APIManager: APIManaging {
         return data
     }
     // Requesting and decoding data to generic parameter T, returning data object
-    func request<T: Decodable>(_ endpoint: Endpoint, spaceX: Bool) async throws -> T {
+    func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
         let decoder = JSONDecoder()
-        let data = try await request(endpoint, spaceX: spaceX)
+        let data = try await request(endpoint)
         let object = try decoder.decode(T.self, from: data)
         
         return object
@@ -52,7 +52,7 @@ final class APIManager: APIManaging {
         let endPoint: PODRouter = .init()
         var pod: APIPod = .init()
         do {
-            let response: APIPod = try await request(endPoint, spaceX: false)
+            let response: APIPod = try await request(endPoint)
             pod = response
         } catch {
             Logger.log("There has been problem fetching picture of the day from the API.\n\(error.localizedDescription)", .error)
@@ -64,7 +64,7 @@ final class APIManager: APIManaging {
         var items: [APILaunch] = .init()
         let endpoint: LaunchesRouter = .init()
         do {
-            let response: [APILaunch] = try await request(endpoint, spaceX: true)
+            let response: [APILaunch] = try await request(endpoint)
             // for item in response where { item.upcoming }() {
             for item in response {
                 items.append(item)

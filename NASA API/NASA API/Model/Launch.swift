@@ -65,6 +65,15 @@ extension Launch {
 
 #if DEBUG
 extension Launch {
-    static let mock = Launch(id:"312", name: "Starlink 4-34 (v1.5)", launchDate: .now, wikiURL: .init(string: "https://cs.wikipedia.org/wiki/Barnardova_šipka"), livestreamURL: .init(string: "https://www.youtube.com/watch?v=wBgSH-CGPzg"), patchURL: .init(string: "https://images2.imgbox.com/a9/9a/NXVkTZCE_o.png"), pinned: true, upcoming: true, payloads: ["fadsjfdaůsfajůk", "123DSA12DAS"])
+    static let mock = Launch(
+        id: "312",
+        name: "Starlink 4-34 (v1.5)",
+        launchDate: .now,
+        wikiURL: .init(string: "https://cs.wikipedia.org/wiki/Barnardova_šipka"),
+        livestreamURL: .init(string: "https://www.youtube.com/watch?v=wBgSH-CGPzg"),
+        patchURL: .init(string: "https://images2.imgbox.com/a9/9a/NXVkTZCE_o.png"),
+        pinned: true,
+        upcoming: true,
+        payloads: ["fadsjfdaůsfajůk", "123DSA12DAS"])
 }
 #endif

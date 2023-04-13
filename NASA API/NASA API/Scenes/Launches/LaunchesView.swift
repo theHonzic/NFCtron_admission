@@ -19,7 +19,7 @@ struct LaunchesView: View {
                         if viewModel.searchedText.isEmpty {
                             makeNonSearchingView()
                         } else {
-                            makeSearchingView()
+                            makeSearchView()
                         }
                     }
                     .padding(.horizontal)
@@ -48,7 +48,7 @@ struct LaunchesView: View {
             }
         }
     }
-    @ViewBuilder func makeSearchingView() -> some View {
+    @ViewBuilder func makeSearchView() -> some View {
         ForEach(viewModel.searchResults, id: \.id) { item in
             makeCard(for: item)
                 .padding()
@@ -68,7 +68,8 @@ struct LaunchesView: View {
         VStack {
             HStack(alignment: .bottom) {
                 Text("Pinned")
-                    .font(.title2)
+                    .font(.title3)
+                    .fontWeight(.semibold)
                 Spacer()
                 Text("Unpin all")
                     .font(.caption)
@@ -87,7 +88,8 @@ struct LaunchesView: View {
         VStack {
             HStack(alignment: .bottom) {
                 Text("Upcoming")
-                    .font(.title2)
+                    .font(.title3)
+                    .fontWeight(.semibold)
                 Spacer()
                 Menu {
                     Button {
@@ -143,18 +145,7 @@ struct LaunchesView: View {
         HStack {
             VStack(alignment: .leading) {
                 HStack {
-                    if launch.patchURL != nil || launch.patchURL != .init(string: "") {
-                        WebImage(url: launch.patchURL)
-                            .resizable()
-                            .placeholder {
-                                ProgressView()
-                                    .frame(width: 40, height: 40)
-                            }
-                            .frame(width: 40, height: 40)
-                    } else {
-                        Color("AppBackground")
-                            .frame(width: 40, height: 40)
-                    }
+                    makePatch(for: launch)
                     VStack(alignment: .leading) {
                         Text(launch.name)
                             .fontWeight(.semibold)
@@ -173,7 +164,7 @@ struct LaunchesView: View {
                         .font(.caption)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 2)
-                        .background(.red)
+                        .background(Color("livestreamBackground"))
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                         .onTapGesture {
@@ -209,6 +200,20 @@ struct LaunchesView: View {
                 }
         }
         .frame(width: UIScreen.screenWidth * 0.85)
+    }
+    @ViewBuilder func makePatch(for launch: Launch) -> some View {
+        if launch.patchURL != nil || launch.patchURL != .init(string: "") {
+            WebImage(url: launch.patchURL)
+                .resizable()
+                .placeholder {
+                    ProgressView()
+                        .frame(width: 40, height: 40)
+                }
+                .frame(width: 40, height: 40)
+        } else {
+            Color("AppBackground")
+                .frame(width: 40, height: 40)
+        }
     }
 }
 

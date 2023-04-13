@@ -132,7 +132,7 @@ struct DailyView: View {
             .frame(width: UIScreen.screenWidth * 0.9, height: UIScreen.screenWidth * 0.9)
     }
     @ViewBuilder func makeThumbnail() -> some View {
-        // TESTING thumbnail: WebImage(url: URL(string: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-vector-background-with-paper-boat-for-valentine-s-day-png-image_8473842.png"))
+        // TestWebImage(url: URL(string: "https://png.pngtree.com/png-clipart/20220823/original/pngtree-vector-background-with-paper-boat-for-valentine-s-day-png-image_8473842.png"))
         WebImage(url: viewModel.pod?.url)
             .placeholder {
                 loading

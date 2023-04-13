@@ -26,13 +26,8 @@ extension Date {
             return ""
         }
     }
-    // TODO: redo
     func getInfoIn() -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        formatter.allowedUnits = [.day, .hour, .minute, .second]
-        formatter.zeroFormattingBehavior = .dropAll
-        let components = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: Date(), to: self)
+        let components = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: Date.now, to: self)
         let days = components.day ?? 0
         let hours = components.hour ?? 0
         let minutes = components.minute ?? 0

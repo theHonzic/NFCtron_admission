@@ -28,7 +28,7 @@ final class CoreDataManager: CoreDataManaging {
         }
         
         if let storeUrl = container.persistentStoreCoordinator.persistentStores.first?.url {
-            Logger.log("Store location: \n\(storeUrl)", .info)
+            Logger.log("You can browse Core Data here: \n\(storeUrl)", .info)
         }
         
         return container

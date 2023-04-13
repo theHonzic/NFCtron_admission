@@ -8,11 +8,10 @@
 import Foundation
 
 struct LaunchesRouter: Endpoint {
-    var urlParameters: [String : String]? = {
+    var urlParameters: [String: String]? {
         return nil
-    }()
-
-    var method: HTTPMethod = {
-        return .get
-    }()
+    }
+    var path: URL {
+        return URLConstants.launchesURL
+    }
 }
