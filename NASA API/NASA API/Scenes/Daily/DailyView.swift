@@ -32,37 +32,74 @@ struct DailyView: View {
     }
     
     @ViewBuilder func makeImage() -> some View {
-        WebImage(url: viewModel.pod?.hdURL)
-            .placeholder {
-                makeThumbnail()
-            }
-            .resizable()
-            .scaledToFit()
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            .overlay(
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(viewModel.pod?.title ?? "Loading...")
-                            .foregroundColor(.white)
-                            .font(.title2)
-                        Spacer()
-                    }
-                    .padding(2)
-                    Spacer()
-                    Group {
-                        if let date = viewModel.pod?.date {
-                            Text("\(date.formatted(date: .numeric, time: .omitted))")
-                                .foregroundColor(.gray)
-                                .font(.callout)
-                            
-                            Text("\(date.timeAgoString())")
-                                .font(.largeTitle)
+        if viewModel.deviceIsConnected {
+            WebImage(url: viewModel.pod?.hdURL)
+                .placeholder {
+                    makeThumbnail()
+                }
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .overlay(
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(viewModel.pod?.title ?? "Loading...")
                                 .foregroundColor(.white)
+                                .font(.title2)
+                            Spacer()
+                        }
+                        .padding(2)
+                        Spacer()
+                        Group {
+                            if let date = viewModel.pod?.date {
+                                Text("\(date.formatted(date: .numeric, time: .omitted))")
+                                    .foregroundColor(.gray)
+                                    .font(.callout)
+                                
+                                Text("\(date.timeAgoString())")
+                                    .font(.largeTitle)
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
+                        .padding()
+                )
+        } else {
+            if let imageData = viewModel.pod?.imageData {
+                if let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .overlay(
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(viewModel.pod?.title ?? "Loading...")
+                                        .foregroundColor(.white)
+                                        .font(.title2)
+                                    Spacer()
+                                }
+                                .padding(2)
+                                Spacer()
+                                Group {
+                                    if let date = viewModel.pod?.date {
+                                        Text("\(date.formatted(date: .numeric, time: .omitted))")
+                                            .foregroundColor(.gray)
+                                            .font(.callout)
+                                        
+                                        Text("\(date.timeAgoString())")
+                                            .font(.largeTitle)
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                            }
+                                .padding()
+                        )
                 }
-                    .padding()
-            )
+            } else {
+                loading
+            }
+        }
     }
     @ViewBuilder var loading: some View {
         ProgressView()

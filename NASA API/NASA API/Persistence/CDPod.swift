@@ -28,16 +28,7 @@ extension CDPod {
             }
             self.posted = date
         }
-        
-        if let url = entity.url {
-            do {
-                let (data, _) = try await URLSession.shared.data(from: url)
-                self.thumbnailImage = UIImage(data: data)?.pngData()
-            } catch {
-                Logger.log(error.localizedDescription, .error)
-            }
-        }
-        
+
         if let url = entity.hdurl {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)

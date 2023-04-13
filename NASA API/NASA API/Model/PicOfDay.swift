@@ -13,6 +13,7 @@ struct PicOfDay {
     var date: Date?
     var url: URL?
     var hdURL: URL?
+    var imageData: Data?
 }
 
 extension PicOfDay {
@@ -41,6 +42,9 @@ extension PicOfDay {
         }
         if let url = entity.hdUrl {
             self.hdURL = .init(string: url)
+        }
+        if let data = entity.fullPicture {
+            self.imageData = data
         }
     }
 }

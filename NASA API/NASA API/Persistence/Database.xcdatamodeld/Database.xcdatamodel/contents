@@ -17,7 +17,6 @@
         <attribute name="hdUrl" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="posted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="thumbnailImage" optional="YES" attributeType="Binary"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
